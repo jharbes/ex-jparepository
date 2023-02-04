@@ -25,5 +25,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	// possuem o query pronto, sendo desnecesario a sua construcao, nesse caso ele
 	// funciona exatamente como o outro metodo searchBySalary acima
 	Page<User> findBySalaryBetween(Double minSalary, Double maxSalary, Pageable pageable);
-
+	
+	// idem ao anterior trata-se um metodo pronto do jpa spring (jpa.query-methods), so que agora para o nome
+	Page<User> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }

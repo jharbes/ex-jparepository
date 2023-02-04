@@ -87,4 +87,11 @@ public class UserController {
 		Page<User> result = userRepository.findBySalaryBetween(minSalary, maxSalary, pageable);
 		return ResponseEntity.ok(result);
 	}
+	
+	// idem ao anterior so que para nomes
+	@GetMapping(value = "/find-name")
+	public ResponseEntity<Page<User>> findByNameContainingIgnoreCase(@RequestParam(defaultValue = "") String name, Pageable pageable) {
+		Page<User> result = userRepository.findByNameContainingIgnoreCase(name, pageable);
+		return ResponseEntity.ok(result);
+	}
 }
