@@ -48,15 +48,26 @@ public class UserController {
 		Page<User> result = userRepository.findAll(pageable);
 		return ResponseEntity.ok(result);
 	}
-	
-	
+
 	/*
-	 * @RequestParam seta o argumento minimo salario, que caso nao seja informado sera utilizado o valor 0
-	 * idem para o maximo que caso nao seja informado sera setado o maximo para 1000000000000	
+	 * @RequestParam seta o argumento minimo salario, que caso nao seja informado
+	 * sera utilizado o valor 0 idem para o maximo que caso nao seja informado sera
+	 * setado o maximo para 1000000000000
+	 * 
+	 * localhost:8080/users/search-salary?minSalary=10000 faz a busca procurando
+	 * quem ganha no minimo 10.000
+	 * 
+	 * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000 faz a busca
+	 * procurando quem ganha no minimo 7000 e no maximo 9000
+	 * 
+	 * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000%size=5 (idem ao anterior mas com 5 elementos por pagina)
+	 * 
+	 * conforme pode ser notado as consultas podem incluir outros parametros para refina-la
 	 */
 	@GetMapping(value = "/search-salary")
-	public ResponseEntity<Page<User>> searchBySalary(@RequestParam(defaultValue = "0") Double minSalary, @RequestParam(defaultValue = "1000000000000") Double maxSalary, Pageable pageable) {
-	    Page<User> result = userRepository.findBySalaryBetween(minSalary, maxSalary, pageable);
-	    return ResponseEntity.ok(result);
+	public ResponseEntity<Page<User>> searchBySalary(@RequestParam(defaultValue = "0") Double minSalary,
+			@RequestParam(defaultValue = "1000000000000") Double maxSalary, Pageable pageable) {
+		Page<User> result = userRepository.findBySalaryBetween(minSalary, maxSalary, pageable);
+		return ResponseEntity.ok(result);
 	}
 }
