@@ -111,7 +111,7 @@ Page<User> searchByName(String name, Pageable pageable);
 
 
 
-JPA QUERY METHODS (metodos prontos do Spring JPA que dispensam a criacao de Querys, consultar documentacao do spring)
+JPA QUERY METHODS/QUERY CREATION (metodos prontos do Spring JPA que dispensam a criacao de Querys, consultar documentacao do spring)
 
 Page<User> findBySalaryBetween(Double minSalary, Double maxSalary, Pageable pageable);
 
