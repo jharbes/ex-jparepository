@@ -5,7 +5,7 @@
 
 ## Trechos de código usados
 
-<h3>Os códigos utilizados são úteis para buscas em banco de dados, serão salvos para facilidade em futuras utilizações</h3>
+<h3>Os códigos utilizados são úteis para buscas em banco de dados e consultas refinadas, serão salvos e disponibilizados no README para facilitar futuras utilizações</h3>
 <br>
 
 ```
