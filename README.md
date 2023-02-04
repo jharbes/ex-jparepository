@@ -22,6 +22,9 @@ spring.jpa.properties.hibernate.format_sql=true
 
 ```java controller
 
+Classe Controller
+
+
 @Autowired
 private UserRepository repository;
 
@@ -77,10 +80,12 @@ public ResponseEntity<Page<User>> searchByName(@RequestParam(defaultValue = "") 
     Page<User> result = repository.findByNameContainingIgnoreCase(name, pageable);
     return ResponseEntity.ok(result);
 }
-
+```
 
 
 ```java repository
+
+Interface Repository
 
 
 // busca feita por meio de comando no bean @Query para fazer a busca pelo
