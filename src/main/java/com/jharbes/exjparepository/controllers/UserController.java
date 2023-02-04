@@ -60,12 +60,29 @@ public class UserController {
 	 * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000 faz a busca
 	 * procurando quem ganha no minimo 7000 e no maximo 9000
 	 * 
-	 * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000%size=5 (idem ao anterior mas com 5 elementos por pagina)
+	 * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000%size=5 (idem
+	 * ao anterior mas com 5 elementos por pagina)
 	 * 
-	 * conforme pode ser notado as consultas podem incluir outros parametros para refina-la
+	 * conforme pode ser notado as consultas podem incluir outros parametros para
+	 * refina-la
 	 */
 	@GetMapping(value = "/search-salary")
 	public ResponseEntity<Page<User>> searchBySalary(@RequestParam(defaultValue = "0") Double minSalary,
+			@RequestParam(defaultValue = "1000000000000") Double maxSalary, Pageable pageable) {
+		Page<User> result = userRepository.searchBySalary(minSalary, maxSalary, pageable);
+		return ResponseEntity.ok(result);
+	}
+
+	@GetMapping(value = "/search-name")
+	public ResponseEntity<Page<User>> searchByName(@RequestParam(defaultValue = "") String name, Pageable pageable) {
+		Page<User> result = userRepository.searchName(name, pageable);
+		return ResponseEntity.ok(result);
+	}
+
+	// implementacao do metodo pre pronto do spring jpa que faz o mesmo que o metodo
+	// search by salary acima
+	@GetMapping(value = "/find-by-salary")
+	public ResponseEntity<Page<User>> findBySalaryBetween(@RequestParam(defaultValue = "0") Double minSalary,
 			@RequestParam(defaultValue = "1000000000000") Double maxSalary, Pageable pageable) {
 		Page<User> result = userRepository.findBySalaryBetween(minSalary, maxSalary, pageable);
 		return ResponseEntity.ok(result);
