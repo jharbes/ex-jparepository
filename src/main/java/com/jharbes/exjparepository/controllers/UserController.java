@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jharbes.exjparepository.entities.User;
@@ -46,5 +47,16 @@ public class UserController {
 	public ResponseEntity<Page<User>> findAll(Pageable pageable) {
 		Page<User> result = userRepository.findAll(pageable);
 		return ResponseEntity.ok(result);
+	}
+	
+	
+	/*
+	 * @RequestParam seta o argumento minimo salario, que caso nao seja informado sera utilizado o valor 0
+	 * idem para o maximo que caso nao seja informado sera setado o maximo para 1000000000000	
+	 */
+	@GetMapping(value = "/search-salary")
+	public ResponseEntity<Page<User>> searchBySalary(@RequestParam(defaultValue = "0") Double minSalary, @RequestParam(defaultValue = "1000000000000") Double maxSalary, Pageable pageable) {
+	    Page<User> result = userRepository.findBySalaryBetween(minSalary, maxSalary, pageable);
+	    return ResponseEntity.ok(result);
 	}
 }
