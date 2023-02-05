@@ -1,3 +1,5 @@
+<img align="right" alt="Spring" width="100" src="https://github.com/devicons/devicon/blob/master/icons/spring/spring-original.svg">
+
 # ex-jparepository
 
 <h3>Exercising Project - JpaRepository/Spring Boot</h3>
