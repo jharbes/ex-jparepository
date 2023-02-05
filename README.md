@@ -73,12 +73,14 @@ public ResponseEntity<Page<User>> findAll(Pageable pageable) {
  * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000 faz a busca
  * procurando quem ganha no minimo 7000 e no maximo 9000
  * 
- * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000%size=5 (idem ao anterior mas com 5 elementos por pagina)
+ * localhost:8080/users/search-salary?minSalary=7000&maxSalary=9000%size=5 
+ * (idem ao anterior mas com 5 elementos por pagina)
  * 
  * conforme pode ser notado as consultas podem incluir outros parametros para refina-la
  */
 @GetMapping(value = "/search-salary")
-public ResponseEntity<Page<User>> searchBySalary(@RequestParam(defaultValue = "0") Double minSalary, @RequestParam(defaultValue = "1000000000000") Double maxSalary, Pageable pageable) {
+public ResponseEntity<Page<User>> searchBySalary(@RequestParam(defaultValue = "0") Double minSalary, 
+@RequestParam(defaultValue = "1000000000000") Double maxSalary, Pageable pageable) {
     Page<User> result = repository.findBySalaryBetween(minSalary, maxSalary, pageable);
     return ResponseEntity.ok(result);
 }
@@ -111,7 +113,8 @@ Page<User> searchByName(String name, Pageable pageable);
 
 
 
-JPA QUERY METHODS/QUERY CREATION (metodos prontos do Spring JPA que dispensam a criacao de Querys, consultar documentacao do spring)
+// JPA QUERY METHODS/QUERY CREATION (metodos prontos do Spring JPA que dispensam a criacao de Querys, 
+// consultar documentacao do spring)
 
 Page<User> findBySalaryBetween(Double minSalary, Double maxSalary, Pageable pageable);
 
